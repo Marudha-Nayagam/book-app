@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Home } from "./Home";
 import { BookList } from "./BookList";
+import { BasicForm } from "./BasicForm";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,6 +19,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { API } from "./global";
+
+
+
+
 
 function App() {
   const [bookList, setBookList] = useState([]);
@@ -51,6 +56,15 @@ function App() {
             <Button variant="contained" onClick={() => navigate("/books/add")}>
               ADD BOOK
             </Button>
+            
+            <Button variant="contained" onClick={() => navigate("/form")}>
+             Basic Form
+            </Button>
+
+
+            
+
+
 
             <Button
               variant="contained"
@@ -64,13 +78,14 @@ function App() {
             </Button>
           </Toolbar>
         </AppBar>
+        {/* < Filters /> */}
         <Routes>
           <Route path="/books" element={<BookList />} />
           <Route path="/books/:bookid" element={<BookDetail />} />
           <Route path="/" element={<Home />} />
           <Route path="/books/add" element={<AddBook />} />
           <Route path="/books/edit/:bookid" element={<EditBook />} />
-
+          <Route path="/form" element={<BasicForm />} />x``
           <Route path="/404" element={<PageNotFound />} />
           <Route path="/novel" element={<Navigate replace to="/books" />} />
           <Route path="*" element={<Navigate replace to="/404" />} />
@@ -79,5 +94,6 @@ function App() {
     </ThemeProvider>
   );
 }
+
 
 export default App;

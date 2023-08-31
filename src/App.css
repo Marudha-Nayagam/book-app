@@ -1,58 +1,96 @@
-.App {
-  
-}
-.app-bar button{
+.App {}
+
+.app-bar button {
   margin-right: 15px;
 }
-.book-container{
+
+.book-container {
   width: 350px;
   border: 1px solid lightgray;
   border-radius: 16px;
   margin: 10px;
-  
+
 }
-.book-poster{
+
+.book-poster {
   width: 100%;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  object-fit:fill;
+  object-fit: fill;
   height: 400px;
- 
+
 }
-.book-spec{
+
+.book-spec {
   margin: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.book-summary{
+
+.book-summary {
   margin: 0 10px 25px 10px;
   font-size: 18x;
 }
-.book-rating{
+
+.book-rating {
   font-size: 20px;
   font-weight: 600;
 }
-.book-list{
+
+.book-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.book-detail-container{
+
+.book-detail-container {
   width: 650px;
 }
 
-.book-form{
+.book-form {
   display: flex;
   flex-direction: column;
   margin: 50px auto;
   gap: 25px;
   width: 50%;
 }
-.book-form button{
+
+.book-form button {
   width: 150px;
   padding: 14px 10px;
   font-size: 18px;
   margin-left: 40%;
 }
 
+.full-game {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: linear-gradient(to right top,
+      #051937,
+      #004d7a,
+      #008793,
+      #00bf72,
+      #a8eb12,
+    );
+  align-items: center;
+
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min-content;
+}
+
+.game-box{
+  display: flex;
+  background-color: white;
+  color: black;
+  width: 8rem;
+  height: 8rem;
+  align-items: center;
+  text-align: center;
+
+}

@@ -6,8 +6,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 
+
 export function BookList() {
   const [bookList, setBookList] = useState([]);
+  
+  const [filteredSearch, setFilteredSearch] = useState(bookList)
   const navigate = useNavigate()
 
   const getBooks = () => {
@@ -19,43 +22,56 @@ export function BookList() {
   };
 
   useEffect(() => getBooks(), []);
+
+  const handleSearch = (event) => {
+    console.log(event.target.value)
+    if(event.target.value === ""){
+      setFilteredSearch(bookList)
+      return;
+    }
+    const filteredValue = bookList.filter(
+      (item) => 
+      item.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
+    )
+    setFilteredSearch(filteredValue)
+}
   return (
     <div className="book-list">
       {bookList.map((bk, index) => (
-        <Book
-          book={bk}
-          id={bk.id}
-          key={bk.id}
-          deleteIcon={
-            <IconButton
-              color="error"
-              onClick={() => {
-                fetch(`${API}/books/${bk.id}`, {
-                  method: "DELETE",
-                }).then(() => getBooks());
-              }}
+       <Book
+       book={bk}
+       id={bk.id}
+       key={bk.id}
+       deleteIcon={
+         <IconButton
+           color="error"
+           onClick={() => {
+             fetch(`${API}/books/${bk.id}`, {
+               method: "DELETE",
+             }).then(() => getBooks());
+           }}
 
-              // onClick={() => {
-              //   let copyBookList = [...bookList]
-              //   console.log(copyBookList)
-              //   let removedBook = copyBookList.splice(index,1)
-              //   console.log("removed", removedBook)
-              //   console.log("index", index)
-              // }}
-            >
-              <DeleteIcon />
-            </IconButton>
-          }
-          editButton={
-            <IconButton color="secondary"
-            onClick={() =>{
-              navigate(`/books/edit/${bk.id}`)
-            }}
-            >
-              <EditIcon />
-            </IconButton>
-          }
-        />
+           // onClick={() => {
+           //   let copyBookList = [...bookList]
+           //   console.log(copyBookList)
+           //   let removedBook = copyBookList.splice(index,1)
+           //   console.log("removed", removedBook)
+           //   console.log("index", index)
+           // }}
+         >
+           <DeleteIcon />
+         </IconButton>
+       }
+       editButton={
+         <IconButton color="secondary"
+         onClick={() =>{
+           navigate(`/books/edit/${bk.id}`)
+         }}
+         >
+           <EditIcon />
+         </IconButton>
+       }
+     />
       ))}
     </div>
   );
